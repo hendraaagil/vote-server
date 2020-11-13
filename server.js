@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -11,19 +12,23 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
-// Connect to database
-const dbURI =
-  'mongodb+srv://hendraaagil:ubZt7QTjeEu8q2L@vote-cluster.knplr.mongodb.net/db_vote';
-mongoose
-  .connect(dbURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then((res) => app.listen(8000))
-  .catch((err) => console.log(err));
+const MONGO_URL = process.env.MONGO_URL;
+const PORT = process.env.PORT;
 
 app.get('/', (req, res) => {
   res.send({ author: 'Hendra Agil', text: 'Talk less, do more!' });
 });
 app.use(authRoutes);
+
+const run = async () => {
+  await mongoose.connect(MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  });
+  await app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+};
+
+run();
