@@ -38,7 +38,7 @@ const createToken = (id) => {
   return jwt.sign({ id }, 'this is very secret', { expiresIn: maxAge });
 };
 
-module.exports.signup_post = async (req, res) => {
+module.exports.signup = async (req, res) => {
   const { username, password, fullName, role } = req.body;
 
   try {
@@ -52,7 +52,7 @@ module.exports.signup_post = async (req, res) => {
   }
 };
 
-module.exports.login_post = async (req, res) => {
+module.exports.login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
