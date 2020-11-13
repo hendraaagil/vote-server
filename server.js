@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
   res.send({ author: 'Hendra Agil', text: 'Talk less, do more!' });
 });
 app.use(authRoutes);
+app.use('/admin', adminRoutes);
 
 const run = async () => {
   await mongoose.connect(MONGO_URL, {
