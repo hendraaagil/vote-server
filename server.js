@@ -16,12 +16,14 @@ app.use(cors());
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT;
 
+// Routing
 app.get('/', (req, res) => {
   res.send({ author: 'Hendra Agil', text: 'Talk less, do more!' });
 });
 app.use(authRoutes);
 app.use('/admin', adminRoutes);
 
+// Connect to database
 const run = async () => {
   await mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,

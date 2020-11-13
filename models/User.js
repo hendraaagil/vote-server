@@ -16,16 +16,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  role: {
-    type: String,
-    required: true,
-    lowercase: true,
-  },
 });
 
 // Fire a function BEFORE doc saved to db
+// @ts-ignore
 userSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt();
+  // @ts-ignore
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });

@@ -10,20 +10,23 @@ AdminBro.registerAdapter(AdminBroMongoose);
 const adminBro = new AdminBro({
   databases: [mongoose],
   rootPath: '/admin',
+  branding: {
+    logo:
+      'https://www.bcpharmacy.ca/sites/default/files/assets/paragraphs/image/image/Winter2019%20eVoting-01.png',
+    companyName: 'E-Voting | Admin',
+  },
 });
 
 const ADMIN = {
-  username: process.env.ADMIN_USERNAME || 'admin-vote',
+  email: process.env.ADMIN_EMAIL || 'admin@admin.com',
   password: process.env.ADMIN_PASS || 'admin',
 };
 
 const adminRoutes = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
   cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',
   cookiePassword: process.env.ADMIN_COOKIE_PASS || 'super-secret-password',
-  authenticate: async (username, password) => {
-    return username === ADMIN.username && password === ADMIN.password
-      ? ADMIN
-      : null;
+  authenticate: async (email, password) => {
+    return email === ADMIN.email && password === ADMIN.password ? ADMIN : null;
   },
 });
 

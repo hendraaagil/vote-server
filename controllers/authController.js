@@ -56,6 +56,7 @@ module.exports.login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    // @ts-ignore
     const user = await User.login(username, password);
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: 1000 * maxAge });
