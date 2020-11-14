@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const candidateRoutes = require('./routes/candidateRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 });
 app.use(authRoutes);
 app.use('/admin', adminRoutes);
+app.use(candidateRoutes);
 
 // Connect to database
 const run = async () => {
@@ -29,6 +31,7 @@ const run = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: true,
   });
   await app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

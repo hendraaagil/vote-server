@@ -39,10 +39,10 @@ const createToken = (id) => {
 };
 
 module.exports.signup = async (req, res) => {
-  const { username, password, fullName, role } = req.body;
+  const { username, password, fullName, voted } = req.body;
 
   try {
-    const user = await User.create({ username, password, fullName, role });
+    const user = await User.create({ username, password, fullName, voted });
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: 1000 * maxAge });
     res.status(201).json({ user: user._id });

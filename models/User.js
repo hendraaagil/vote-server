@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  voted: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 // Fire a function BEFORE doc saved to db
