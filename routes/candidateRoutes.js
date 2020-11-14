@@ -4,6 +4,6 @@ const candidateController = require('../controllers/candidateController');
 const router = Router();
 
 router.post('/create-candidate', candidateController.create);
-router.get('/candidate', candidateController.getCandidate);
+router.get('/candidates', candidateController.getCandidate);
 
 module.exports = router;
