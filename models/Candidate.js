@@ -9,6 +9,10 @@ const candidateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  photoLink: {
+    type: String,
+    required: true,
+  },
   mainProgram: {
     type: String,
     required: true,

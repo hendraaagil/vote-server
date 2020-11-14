@@ -1,12 +1,20 @@
 const Candidate = require('../models/Candidate');
 
 module.exports.create = async (req, res) => {
-  const { leader, coLeader, mainProgram, vision, mission } = req.body;
+  const {
+    leader,
+    coLeader,
+    photoLink,
+    mainProgram,
+    vision,
+    mission,
+  } = req.body;
 
   try {
     const candidate = await Candidate.create({
       leader,
       coLeader,
+      photoLink,
       mainProgram,
       vision,
       mission,
