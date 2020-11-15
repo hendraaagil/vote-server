@@ -2,6 +2,7 @@ const Candidate = require('../models/Candidate');
 
 module.exports.create = async (req, res) => {
   const {
+    number,
     leader,
     coLeader,
     photoLink,
@@ -12,6 +13,7 @@ module.exports.create = async (req, res) => {
 
   try {
     const candidate = await Candidate.create({
+      number,
       leader,
       coLeader,
       photoLink,

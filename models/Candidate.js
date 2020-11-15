@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const candidateSchema = new mongoose.Schema({
+  number: {
+    type: Number,
+    required: true,
+  },
   leader: {
     type: String,
     required: true,
