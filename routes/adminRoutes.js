@@ -4,10 +4,8 @@ const AdminBroMongoose = require('admin-bro-mongoose');
 const mongoose = require('mongoose');
 require('../models/Candidate');
 
-// @ts-ignore
 AdminBro.registerAdapter(AdminBroMongoose);
 
-// @ts-ignore
 const adminBro = new AdminBro({
   databases: [mongoose],
   rootPath: '/admin',

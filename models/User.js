@@ -4,29 +4,26 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true,
+    required: [true, 'Please enter an username'],
     unique: true,
     lowercase: true,
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Please enter a password'],
   },
   fullName: {
     type: String,
-    required: true,
+    required: [true, 'Please enter a full name'],
   },
   voted: {
     type: Boolean,
-    required: true,
   },
 });
 
 // Fire a function BEFORE doc saved to db
-// @ts-ignore
 userSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt();
-  // @ts-ignore
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
