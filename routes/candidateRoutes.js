@@ -5,5 +5,6 @@ const router = Router();
 
 router.post('/create-candidate', candidateController.create);
 router.get('/candidates', candidateController.getCandidate);
+router.get('/candidates/:candidateId', candidateController.getCandidateById);
 
 module.exports = router;

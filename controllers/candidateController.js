@@ -35,3 +35,12 @@ module.exports.getCandidate = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
+module.exports.getCandidateById = async (req, res) => {
+  try {
+    const candidate = await Candidate.findById(req.params.candidateId);
+    res.status(201).json(candidate);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
