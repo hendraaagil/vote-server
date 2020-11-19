@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const candidateRoutes = require('./routes/candidateRoutes');
+const resultRoutes = require('./routes/resultRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 app.use(authRoutes);
 app.use('/admin', adminRoutes);
 app.use(candidateRoutes);
+app.use(resultRoutes);
 
 // Connect to database
 const run = async () => {
