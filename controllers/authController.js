@@ -62,3 +62,15 @@ module.exports.getUserById = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
+module.exports.updateUserById = async (req, res) => {
+  try {
+    const user = await User.updateOne(
+      { _id: req.params.userId },
+      { $set: { voted: true } }
+    );
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
