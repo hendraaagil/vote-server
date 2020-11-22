@@ -3,6 +3,7 @@ const resultController = require('../controllers/resultController');
 
 const router = Router();
 
-router.post('/send-result', resultController.send_result);
+router.post('/result', resultController.send_result);
+router.get('/result', resultController.get_result);
 
 module.exports = router;

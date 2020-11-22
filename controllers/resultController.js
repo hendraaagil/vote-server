@@ -14,3 +14,12 @@ module.exports.send_result = async (req, res) => {
     res.status(400).json({ errors: error });
   }
 };
+
+module.exports.get_result = async (req, res) => {
+  try {
+    const result = await Result.find();
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
