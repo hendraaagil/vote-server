@@ -1,26 +1,21 @@
 const User = require('../models/User');
 
-// Handle errors
 const handleErrors = (err) => {
-  let errors = { username: '', password: '' };
+  let errors = { fullName: '', username: '', password: '' };
 
-  // Incorrect username
   if (err.message === 'incorrect username') {
-    errors.username = 'That username is not registered';
+    errors.username = 'Username tidak terdaftar';
   }
 
-  // Incorrect password
   if (err.message === 'incorrect password') {
-    errors.password = 'That password is incorrect';
+    errors.password = 'Password salah';
   }
 
-  // Duplicate error code
   if (err.code === 11000) {
-    errors.username = 'That username is already registered';
+    errors.username = 'Username sudah terdaftar';
     return errors;
   }
 
-  // Validation errors
   if (err.message.includes('user validation failed')) {
     Object.values(err.errors).forEach(({ properties }) => {
       errors[properties.path] = properties.message;
@@ -31,10 +26,10 @@ const handleErrors = (err) => {
 };
 
 module.exports.signup = async (req, res) => {
-  const { username, password, fullName, voted } = req.body;
+  const { username, password, fullName } = req.body;
 
   try {
-    const user = await User.create({ username, password, fullName, voted });
+    const user = await User.create({ username, password, fullName });
     res.status(201).json({ user: user._id });
   } catch (error) {
     const errors = handleErrors(error);

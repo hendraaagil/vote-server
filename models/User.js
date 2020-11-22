@@ -4,17 +4,17 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, 'Please enter an username'],
-    unique: [true, 'Username already registered! Please choose another one'],
+    required: [true, 'Masukkan username'],
+    unique: true,
     lowercase: true,
   },
   password: {
     type: String,
-    required: [true, 'Please enter a password'],
+    required: [true, 'Masukkan password'],
   },
   fullName: {
     type: String,
-    required: [true, 'Please enter a full name'],
+    required: [true, 'Masukkan nama lengkap'],
   },
   voted: {
     type: Boolean,
