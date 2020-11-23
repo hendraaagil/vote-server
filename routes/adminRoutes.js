@@ -18,15 +18,15 @@ const adminBro = new AdminBro({
 });
 
 const ADMIN = {
-  email: process.env.ADMIN_EMAIL || 'admin@admin.com',
-  password: process.env.ADMIN_PASS || 'admin',
+  email: process.env.ADMIN_EMAIL,
+  password: process.env.ADMIN_PASS,
 };
 
 const adminRoutes = AdminBroExpress.buildAuthenticatedRouter(
   adminBro,
   {
-    cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',
-    cookiePassword: process.env.ADMIN_COOKIE_PASS || 'super-secret-password',
+    cookieName: process.env.ADMIN_COOKIE_NAME,
+    cookiePassword: process.env.ADMIN_COOKIE_PASS,
     authenticate: async (email, password) => {
       return email === ADMIN.email && password === ADMIN.password
         ? ADMIN
